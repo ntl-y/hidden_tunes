@@ -2,6 +2,7 @@ package service
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	ht "hidden_tunes"
 	"hidden_tunes/repository"
@@ -9,6 +10,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"strconv"
 	"time"
 )
 
@@ -38,7 +40,7 @@ func gatherParams(offset int) url.Values {
 	params.Add("client_id", os.Getenv("CLIENT_ID"))
 	params.Add("format", "jsonpretty")
 	params.Add("limit", "all")
-	params.Add("offset", string(offset))
+	params.Add("offset", strconv.Itoa(offset))
 	params.Add("order", "buzzrate")
 	params.Add("include", "stats")
 	params.Add("audioformat", "mp31")
@@ -85,6 +87,10 @@ func (s *AudioService) collectAudio() error {
 		return err
 	}
 
+	if APIResponse.Headers.Status == "failed" {
+		return errors.New(APIResponse.Headers.ErrorMessage)
+	}
+
 	var audios []ht.Audio
 	for _, res := range APIResponse.Results {
 		if !res.AudioDownloadAllowed || res.Stats.RateListenedTotal > maxListened {
@@ -112,7 +118,7 @@ func (s *AudioService) FetchAudio() error {
 			return err
 		}
 		s.offset += limit
-		time.Sleep(5 * time.Second)
+		time.Sleep(30 * time.Minute)
 	}
 }
 
