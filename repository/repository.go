@@ -8,6 +8,7 @@ import (
 
 type Audio interface {
 	InsertAudioSlice(audios []ht.Audio) error
+	GetRandomAudio() (ht.Audio, error)
 }
 type Repository struct {
 	Audio

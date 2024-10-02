@@ -7,7 +7,12 @@ import (
 )
 
 func (h *Handler) audioPlay(c *gin.Context) {
-	c.JSON(http.StatusOK, map[string]interface{}{
-		"random_audio": "audio",
-	})
+	audio, err := h.service.GetRandomAudio()
+	if err != nil {
+		c.AbortWithStatusJSON(http.StatusInternalServerError, map[string]interface{}{
+			"message": err.Error(),
+		})
+		return
+	}
+	c.JSON(http.StatusOK, audio)
 }

@@ -1,9 +1,13 @@
 package service
 
-import "hidden_tunes/repository"
+import (
+	ht "hidden_tunes"
+	"hidden_tunes/repository"
+)
 
 type Audio interface {
 	FetchAudio() error
+	GetRandomAudio() (ht.Audio, error)
 }
 
 type Service struct {

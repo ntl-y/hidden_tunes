@@ -35,13 +35,17 @@ func NewAudioService(repo *repository.Repository) *AudioService {
 	}
 }
 
+func (s *AudioService) GetRandomAudio() (ht.Audio, error) {
+	return s.repo.GetRandomAudio()
+}
+
 func gatherParams(offset int) url.Values {
 	params := url.Values{}
 	params.Add("client_id", os.Getenv("CLIENT_ID"))
 	params.Add("format", "jsonpretty")
 	params.Add("limit", "all")
 	params.Add("offset", strconv.Itoa(offset))
-	params.Add("order", "buzzrate")
+	params.Add("order", "releasedate_desc")
 	params.Add("include", "stats")
 	params.Add("audioformat", "mp31")
 
@@ -102,12 +106,12 @@ func (s *AudioService) collectAudio() error {
 			ArtistName:        res.ArtistName,
 			AlbumName:         res.AlbumName,
 			Audio:             res.AlbumName,
+			AlbumImage:        res.AlbumImage,
 			AudioDownload:     res.AudioDownload,
 			StatsRateListened: res.Stats.RateListenedTotal,
 		}
 		audios = append(audios, audio)
 	}
-	fmt.Println(len(audios))
 	return s.repo.InsertAudioSlice(audios)
 }
 
@@ -123,5 +127,4 @@ func (s *AudioService) FetchAudio() error {
 }
 
 func (s *AudioService) DBValidate() {
-
 }

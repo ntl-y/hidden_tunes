@@ -17,6 +17,12 @@ func NewAudioRepository(db *sqlx.DB) *AudioRepository {
 	return &AudioRepository{db: db}
 }
 
+func (r *AudioRepository) GetRandomAudio() (audio ht.Audio, err error) {
+	query := fmt.Sprintf("select jamendo_id, name, artist_name, album_name, album_image, audio, audiodownload, rate_listened_total from %s order by random() limit 1", audioTable)
+	err = r.db.Get(&audio, query)
+	return audio, err
+}
+
 func (r *AudioRepository) insertAudio(audio ht.Audio) error {
 	query := fmt.Sprintf("INSERT INTO %s (jamendo_id, name, artist_name, album_name, album_image, audio, audiodownload, rate_listened_total) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) ON CONFLICT (jamendo_id) DO NOTHING", audioTable)
 	args := []interface{}{audio.ID, audio.Name, audio.ArtistName, audio.AlbumName, audio.AlbumImage, audio.Audio, audio.AudioDownload, audio.StatsRateListened}
@@ -31,6 +37,6 @@ func (r *AudioRepository) InsertAudioSlice(audios []ht.Audio) error {
 			return err
 		}
 	}
-	logrus.Info(time.Now().Format("01/02/2006 15:04:05"), ": New Audio Inserted")
+	logrus.Infof("%s: %d Audio Inserted", time.Now().Format("01/02/2006 15:04:05"), len(audios))
 	return nil
 }
