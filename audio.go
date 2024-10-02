@@ -5,6 +5,7 @@ type Audio struct {
 	Name              string `json:"name"`
 	ArtistName        string `json:"artist_name"`
 	AlbumName         string `json:"album_name"`
+	AlbumImage        string `json:"album_image"`
 	Audio             string `json:"audio"`
 	AudioDownload     string `json:"audiodownload"`
 	StatsRateListened int    `json:"rate_listened_total"`
@@ -23,6 +24,7 @@ type APIResponse struct {
 		Name          string `json:"name"`
 		ArtistName    string `json:"artist_name"`
 		AlbumName     string `json:"album_name"`
+		AlbumImage    string `json:"album_image"`
 		Audio         string `json:"audio"`
 		AudioDownload string `json:"audiodownload"`
 		Stats         struct {

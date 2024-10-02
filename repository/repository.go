@@ -1,8 +1,13 @@
 package repository
 
-import "github.com/jmoiron/sqlx"
+import (
+	ht "hidden_tunes"
+
+	"github.com/jmoiron/sqlx"
+)
 
 type Audio interface {
+	InsertAudioSlice(audios []ht.Audio) error
 }
 type Repository struct {
 	Audio

@@ -7,6 +7,8 @@ import (
 	_ "github.com/lib/pq"
 )
 
+const audioTable = "audio"
+
 type Config struct {
 	User     string
 	Password string

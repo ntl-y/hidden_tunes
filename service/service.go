@@ -3,6 +3,7 @@ package service
 import "hidden_tunes/repository"
 
 type Audio interface {
+	FetchAudio() error
 }
 
 type Service struct {
