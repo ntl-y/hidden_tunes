@@ -44,6 +44,13 @@ func main() {
 	handler := handler.NewHandler(service)
 
 	go func() {
+		err := repository.CleanAudio()
+		if err != nil {
+			logrus.Error(err)
+		}
+	}()
+
+	go func() {
 		err := service.FetchAudio()
 		if err != nil {
 			logrus.Error(err)
