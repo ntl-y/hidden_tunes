@@ -16,6 +16,11 @@ func NewHandler(service *service.Service) *Handler {
 
 func (h *Handler) InitRoutes() *gin.Engine {
 	router := gin.New()
-	router.GET("/play", h.audioPlay)
+
+	router.Static("/static", "./web/static")
+	router.LoadHTMLGlob("web/templates/*")
+
+	router.GET("/play", h.playAudio)
+	router.GET("/getRandomAudio", h.getRandomAudio)
 	return router
 }
