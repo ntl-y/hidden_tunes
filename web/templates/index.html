@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -10,48 +13,86 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="../static/style.css" />
-    <title>Music Player</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dongle:wght@700&display=swap"
+      rel="stylesheet"
+    />
   </head>
+  <link rel="stylesheet" href="../static/style.css" />
+  <style>
 
+  </style>
   <body>
-    <h1>Music Player</h1>
+    <div class="text-container">
+      <header>
+        <h2 class="logo">
+          <iframe
+            src="../images/logo.svg"
+            frameborder="0"
+            scrolling="no"
+          ></iframe>
+        </h2>
+      </header>
+      <h1>Hidden Tunes Music Player</h1>
+      <div class="music-container">
+        <div class="music-info">
+          <h4 id="track-name">Track Name</h4>
+          <h4 id="artist-name">Artist Name</h4>
 
-    <div class="music-container">
-      <div class="music-info">
-        <h4 id="track-name">Track Name</h4>
-        <h4 id="artist-name">Artist Name</h4>
-        <!-- <p>Album: <span id="album-name"></span></p> -->
-
-        <div class="progress-container">
-          <div class="progress"></div>
+          <div class="progress-container">
+            <div class="progress"></div>
+          </div>
         </div>
-      </div>
-      <div class="album-image-container">
-        <img
-          id="album-image"
-          src=""
-          alt="Album cover"
-        />
-      </div>
+        <div class="album-image-container">
+          <img id="album-image" src="" alt="Album cover" />
+        </div>
 
-      <audio id="audio-player"></audio>
+        <audio id="audio-player"></audio>
 
-      <div class="navigation">
-        <button id="prev" class="action-btn">
-          <i class="fas fa-backward"></i>
-        </button>
+        <div class="navigation">
+          <button id="prev" class="action-btn">
+            <i class="fas fa-backward"></i>
+          </button>
 
-        <button id="play" class="action-btn action-btn-big">
-          <i class="fas fa-play"></i>
-        </button>
+          <button id="play" class="action-btn action-btn-big">
+            <i class="fas fa-play"></i>
+          </button>
 
-        <button id="next" class="action-btn">
-          <i class="fas fa-forward"></i>
-        </button>
+          <button id="next" class="action-btn">
+            <i class="fas fa-forward"></i>
+          </button>
+        </div>
       </div>
     </div>
 
-    <script src="../static/script.js"></script>
+    <div class="gradient-bg">
+      <svg xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="goo">
+            <feGaussianBlur
+              in="SourceGraphic"
+              stdDeviation="10"
+              result="blur"
+            />
+            <feColorMatrix
+              in="blur"
+              mode="matrix"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
+              result="goo"
+            />
+            <feBlend in="SourceGraphic" in2="goo" />
+          </filter>
+        </defs>
+      </svg>
+      <div class="gradients-container">
+        <div class="g1"></div>
+        <div class="g2"></div>
+        <div class="g3"></div>
+        <div class="g4"></div>
+        <div class="g5"></div>
+        <div class="interactive"></div>
+      </div>
+    </div>
   </body>
+  <script src="../static/script.js"></script>
 </html>

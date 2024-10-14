@@ -1,141 +1,327 @@
-@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Nanum Gothic Coding");
 
-* {
-  box-sizing: border-box;
+html,
+body {
+  font-family: "Nanum Gothic Coding", sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-body {
+.text-container {
+  z-index: 100;
   height: 100vh;
-  margin: 0;
-  font-family: "Lato", sans-serif;
-  background-image: linear-gradient(
-    0deg,
-    rgb(247, 247, 247) 23.8%,
-    rgb(252, 221, 221) 92%
-  );
+  width: 100%;
   display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  opacity: 0.8;
+  user-select: none;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
+
   flex-direction: column;
+  overflow: hidden;
+}
+
+header {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 15;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+}
+
+header h2 {
+  margin: 0;
+}
+
+iframe {
+  height: 50px;
+}
+
+:root {
+  --color-bg1: rgb(108, 0, 162);
+  --color-bg2: rgb(0, 17, 82);
+  --color1: 18, 113, 255;
+  --color2: 221, 74, 255;
+  --color3: 100, 220, 255;
+  --color4: 200, 50, 50;
+  --color5: 180, 180, 50;
+  --color-interactive: 140, 100, 255;
+  --circle-size: 80%;
+  --blending: normal;
+}
+
+@keyframes moveInCircle {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes moveVertical {
+  0% {
+    transform: translateY(-50%);
+  }
+  50% {
+    transform: translateY(50%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes moveHorizontal {
+  0% {
+    transform: translateX(-50%) translateY(-10%);
+  }
+  50% {
+    transform: translateX(50%) translateY(10%);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-10%);
+  }
+}
+
+.gradient-bg {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
+  top: 0;
+  left: 0;
+}
+
+.gradient-bg svg {
+  display: block;
+}
+
+.gradients-container {
+  filter: url(#goo) blur(40px);
+  width: 100%;
+  height: 100%;
+}
+
+.g1 {
+  position: absolute;
+  background: radial-gradient(
+      circle at center,
+      rgba(var(--color1), 0.8) 0%,
+      rgba(var(--color1), 0) 50%
+    )
+    no-repeat;
+  width: var(--circle-size);
+  height: var(--circle-size);
+  top: calc(50% - var(--circle-size) / 2);
+  left: calc(50% - var(--circle-size) / 2);
+  animation: moveVertical 30s ease infinite;
+}
+
+.g2 {
+  position: absolute;
+  background: radial-gradient(
+      circle at center,
+      rgba(var(--color2), 0.8) 0%,
+      rgba(var(--color2), 0) 50%
+    )
+    no-repeat;
+  width: var(--circle-size);
+  height: var(--circle-size);
+  top: calc(50% - var(--circle-size) / 2);
+  left: calc(50% - var(--circle-size) / 2);
+  animation: moveInCircle 20s reverse infinite;
+}
+
+.g3 {
+  position: absolute;
+  background: radial-gradient(
+      circle at center,
+      rgba(var(--color3), 0.8) 0%,
+      rgba(var(--color3), 0) 50%
+    )
+    no-repeat;
+  width: var(--circle-size);
+  height: var(--circle-size);
+  top: calc(50% - var(--circle-size) / 2 + 200px);
+  left: calc(50% - var(--circle-size) / 2 - 500px);
+  animation: moveInCircle 40s linear infinite;
+}
+
+.g4 {
+  position: absolute;
+  background: radial-gradient(
+      circle at center,
+      rgba(var(--color4), 0.8) 0%,
+      rgba(var(--color4), 0) 50%
+    )
+    no-repeat;
+  width: var(--circle-size);
+  height: var(--circle-size);
+  top: calc(50% - var(--circle-size) / 2);
+  left: calc(50% - var(--circle-size) / 2);
+  animation: moveHorizontal 40s ease infinite;
+}
+
+.g5 {
+  position: absolute;
+  background: radial-gradient(
+      circle at center,
+      rgba(var(--color5), 0.8) 0%,
+      rgba(var(--color5), 0) 50%
+    )
+    no-repeat;
+  width: calc(var(--circle-size) * 2);
+  height: calc(var(--circle-size) * 2);
+  top: calc(50% - var(--circle-size));
+  left: calc(50% - var(--circle-size));
+  animation: moveInCircle 20s ease infinite;
+}
+
+.interactive {
+  position: absolute;
+  background: radial-gradient(
+      circle at center,
+      rgba(var(--color-interactive), 0.8) 0%,
+      rgba(var(--color-interactive), 0) 50%
+    )
+    no-repeat;
+  width: 100%;
+  height: 100%;
+  top: -50%;
+  left: -50%;
+}
+
+.music-container {
+  /* width: 70vw; */
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 20px 20px 0 rgba(252, 226, 169, 0.693);
+  display: flex;
+  padding: 20px 30px;
+  position: relative;
+  margin: 100px 0;
+  z-index: 10;
+}
+
+.album-image-container {
+  position: relative;
+  width: 110px;
+}
+
+.album-image-container::after {
+  content: "";
+  background-color: #fff;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  left: 50%;
+  bottom: 65%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.album-image-container img {
+  width: inherit;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  animation: rotate 3s linear infinite;
+  animation-play-state: paused;
+
+  background-image: url("https://loremflickr.com/200/200?random=1");
+}
+
+.music-container.play .album-image-container img {
+  animation-play-state: running;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.navigation {
+  display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
 }
 
-.music-container{
-    background-color: #fff;
-    border-radius: 15px;
-    box-shadow: 0 20px 20px 0 rgba(252, 169, 169, 0.6);
-    display: flex;
-    padding: 20px 30px;
-    position: relative;
-    margin: 100px 0;
-    z-index: 10;
+.action-btn {
+  background-color: #fff;
+  border: 0;
+  color: #dfdbdf;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0 20px;
 }
 
-.album-image-container{
-    position: relative;
-    width: 110px;
+.action-btn-big {
+  color: #cdc2d0;
+  font-size: 30px;
 }
 
-.album-image-container::after{
-    content: '';
-    background-color: #fff;
-    height: 20px;
-    width: 20px;
-    position: absolute;
-    left: 50%;
-    bottom: 50%;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
+.action-btn:focus {
+  outline: 0;
 }
 
-.album-image-container img{
-    width: inherit;
-    height: 110px;
-    border-radius: 50%;
-    object-fit: cover;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-
-    animation: rotate 3s linear infinite;
-    animation-play-state: paused;
+.music-info {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 15px 15px 0 0;
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: calc(100% - 200px);
+  padding: 10px 10px 10px 150px;
+  opacity: 0;
+  transform: translateY(0%);
+  transition: transform 0.3s ease-in, opacity 0.3s ease-in;
 }
 
-.music-container.play .album-image-container img{
-    animation-play-state: running;
+.music-info h4 {
+  margin: 0;
 }
 
-@keyframes rotate{
-    from{
-        transform: rotate(0deg);
-    }
-
-    to{
-        transform: rotate(360deg);
-    }
+.music-container.play .music-info {
+  opacity: 1;
+  transform: translateY(-100%);
 }
 
-.navigation{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
+.progress-container {
+  background: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 0;
+  height: 8px;
+  width: 100%;
 }
 
-.action-btn{
-    background-color: #fff;
-    border: 0;
-    color: #dfdbdf;
-    font-size: 20px;
-    cursor: pointer;
-    padding: 10px;
-    margin: 0 20px;
-}
-
-.action-btn-big{
-    color: #cdc2d0;
-    font-size:30px;
-}
-
-.action-btn:focus{
-    outline: 0;
-}
-
-
-.music-info{
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 15px 15px 0 0;
-    position: absolute;
-    top: 0;
-    left: 20px;
-    width: calc(100% - 40px);
-    padding: 10px 10px 10px 150px;
-    opacity: 0;
-    transform: translateY(0%);
-    transition: transform 0.3s ease-in, opacity 0.3s ease-in;
-}
-
-.music-info h4{
-    margin: 0;
-}
-
-.music-container.play .music-info{
-    opacity: 1;
-    transform: translateY(-100%);
-}
-
-.progress-container{
-    background: #fff;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 10px 0;
-    height: 8px;
-    width: 100%;
-}
-
-.progress{
-    background-color: #fe8daa;
-    border-radius: 5px;
-    height: 100%;
-    width: 0;
-    transition: width 0.1s linear;
+.progress {
+  background-color: rgba(221, 74, 255, 0.8);
+  border-radius: 5px;
+  height: 100%;
+  width: 0;
+  transition: width 0.1s linear;
 }
