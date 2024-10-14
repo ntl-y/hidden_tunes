@@ -3,7 +3,6 @@ package repository
 import (
 	"fmt"
 	ht "hidden_tunes"
-	"os"
 	"time"
 
 	"github.com/jmoiron/sqlx"
@@ -16,18 +15,6 @@ type AudioRepository struct {
 
 func NewAudioRepository(db *sqlx.DB) *AudioRepository {
 	return &AudioRepository{db: db}
-}
-
-func (r *AudioRepository) CleanAudio() error {
-	for {
-		err := os.RemoveAll("./web/music/*")
-		if err != nil {
-			return err
-		}
-		logrus.Infof("%s: AudioDir Cleaned", time.Now().Format("01/02/2006 15:04:05"))
-		time.Sleep(5 * time.Hour)
-	}
-
 }
 
 func (r *AudioRepository) GetRandomAudio() (audio ht.Audio, err error) {
