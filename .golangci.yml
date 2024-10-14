@@ -1,0 +1,14 @@
+linters:
+  enable-all: true
+  disable:
+    - deadcode
+    - exhaustivestruct
+    - golint
+    - ifshort
+    - interfacer
+    - maligned
+
+issues:
+  exclude-rules:
+    - path: _test\.go
+      text: "ignore test files"
