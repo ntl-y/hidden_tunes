@@ -45,6 +45,27 @@ iframe {
   height: 50px;
 }
 
+.github-link {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 15;
+  padding: 10px 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.github-link i {
+  font-size: 24px;
+}
+
 :root {
   --color-bg1: rgb(108, 0, 162);
   --color-bg2: rgb(0, 17, 82);
