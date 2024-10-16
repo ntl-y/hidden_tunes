@@ -5,9 +5,10 @@ services:
     container_name: hidden_tunes_postgres
     ports:
       - "5432:5432"
+    env_file:
+      - ./configs/.env
     volumes:
-      - db_data:/var/lib/postgresql/data
-      - ./000001_init_schema.up.sql:/docker-entrypoint-initdb.d/000001_init_schema.up.sql
+      - ./migrations/000001_init_schema.up.sql:/docker-entrypoint-initdb.d/000001_init_schema.up.sql
     environment:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
@@ -22,5 +23,8 @@ services:
     ports:
       - "9999:9999"
     env_file:
-      - configs/.env
+      - ./configs/.env
     restart: always
+
+volumes:  
+  db_data:
