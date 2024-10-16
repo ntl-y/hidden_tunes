@@ -22,5 +22,5 @@ services:
     ports:
       - "9999:9999"
     env_file:
-      - .env
+      - configs/.env
     restart: always
