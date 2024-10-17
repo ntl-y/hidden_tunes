@@ -2,7 +2,7 @@ version: '3.8'
 services:
   db:
     image: postgres
-    container_name: hidden_tunes_postgres
+    container_name: hidden_tunes_db
     ports:
       - "5432:5432"
     env_file:
@@ -12,8 +12,10 @@ services:
     environment:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_PASSWORD: govnonasrali
     restart: always
+    networks:
+      - hidden_tunes_network 
 
   app:
     build: .
@@ -25,6 +27,15 @@ services:
     env_file:
       - ./configs/.env
     restart: always
+    networks:
+      - hidden_tunes_network     
 
-volumes:  
+volumes:
   db_data:
+
+
+networks:
+  hidden_tunes_network:
+    name: hidden_tunes_network
+    driver: bridge 
+

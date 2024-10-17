@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"hidden_tunes/handler"
 	"hidden_tunes/repository"
 	"hidden_tunes/service"
@@ -23,6 +24,7 @@ func InitConfig() error {
 }
 
 func main() {
+	fmt.Println("Hello")
 	if err := InitConfig(); err != nil {
 		logrus.Fatalln(err)
 	}
