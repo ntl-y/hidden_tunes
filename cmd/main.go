@@ -39,6 +39,8 @@ func main() {
 	})
 	if err != nil {
 		logrus.Fatalln(err)
+	} else {
+		logrus.Println("Connected to db")
 	}
 
 	repository := repository.NewRepository(db)
