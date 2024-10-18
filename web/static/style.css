@@ -247,8 +247,8 @@ iframe {
   height: 20px;
   width: 20px;
   position: absolute;
-  left: 50%;
-  bottom: 65%;
+  left: 52%;
+  bottom: 45%;
   border-radius: 50%;
   transform: translate(-50%, -50%);
 }
@@ -346,3 +346,52 @@ iframe {
   width: 0;
   transition: width 0.1s linear;
 }
+
+.navigation-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.sound-bar-container{
+  background-color: #dfdbdf;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 60%;
+  height: 8px;
+}
+
+.sound-bar{
+  background-color: rgba(221, 74, 255, 0.8);
+  border-radius: 5px;
+  height: 100%;
+  width: 50%;
+}
+
+.prev::before {
+  content: "\f027"; 
+  font-family: "Font Awesome 6 Free"; 
+  font-weight: 900; 
+  position: absolute;
+  left: 40%;
+  bottom: 11%;
+  transform: translateY(-28.5%); 
+  font-size: 15px;
+  color: #dfdbdf;
+}
+
+.next::before {
+  content: "\f027"; 
+  font-family: "Font Awesome 6 Free"; 
+  font-weight: 900; 
+  position: absolute;
+  left: 84%;
+  bottom: 11%;
+  transform: translateY(-28.5%); 
+  font-size: 15px;
+  color: #dfdbdf;
+}
+
+

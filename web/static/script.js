@@ -33,6 +33,8 @@ const progress = document.querySelector(".progress");
 const progressContainer = document.querySelector(".progress-container");
 const title = document.querySelector("#track-name");
 const image = document.querySelector("#album-image");
+const sound = document.querySelector(".sound-bar");
+const soundContainer = document.querySelector(".sound-bar-container");
 
 let trackList = [];
 let currentTrackIndex = -1;
@@ -51,7 +53,35 @@ function updateProgress(e) {
   progress.style.width = `${progressPercent}%`;
 }
 
+function setSound(e) {
+  const width = soundContainer.clientWidth;
+  const clickX = e.offsetX;
+  const volumeLevel = clickX / width;
+
+  audio.volume = volumeLevel;
+  sound.style.width = `${volumeLevel * 100}%`;
+}
+
+function dragSound(e) {
+  const width = soundContainer.clientWidth; 
+  const dragX = e.offsetX; 
+  const volumeLevel = dragX / width; 
+
+  audio.volume = volumeLevel; 
+  sound.style.width = `${volumeLevel * 100}%`;
+}
+
+soundContainer.addEventListener("mousedown", () => {
+  soundContainer.addEventListener("mousemove", dragSound);
+});
+
+window.addEventListener("mouseup", () => {
+  soundContainer.removeEventListener("mousemove", dragSound);
+});
+
 progressContainer.addEventListener("click", setProgress);
+soundContainer.addEventListener("click", setSound);
+
 
 function getRandomAudio() {
   fetch("/getRandomAudio")
