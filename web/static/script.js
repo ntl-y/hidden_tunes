@@ -145,8 +145,14 @@ nextBtn.addEventListener("click", () => {
   if (currentTrackIndex < trackList.length - 1) {
     currentTrackIndex++;
     loadTrack(trackList[currentTrackIndex]);
+    audio.onloadeddata = () => {
+      playSong();
+    };
   } else {
     getRandomAudio();
+    audio.onloadeddata = () => {
+      playSong();
+    };
   }
 });
 
@@ -154,6 +160,9 @@ prevBtn.addEventListener("click", () => {
   if (currentTrackIndex > 0) {
     currentTrackIndex--;
     loadTrack(trackList[currentTrackIndex]);
+    audio.onloadeddata = () => {
+      playSong();
+    };
   }
 });
 
