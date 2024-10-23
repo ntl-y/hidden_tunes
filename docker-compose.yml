@@ -31,11 +31,11 @@ services:
       - db
     restart: always
     ports:
-      - "9999:9999"
+      - "443:9999"
     env_file:
       - ./configs/.env
     networks:
-      - hidden_tunes_network     
+      - hidden_tunes_network    
 
 volumes:
   db_data:

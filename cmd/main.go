@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"hidden_tunes/handler"
 	"hidden_tunes/repository"
 	"hidden_tunes/service"
@@ -12,6 +11,7 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
+	"golang.org/x/crypto/acme/autocert"
 )
 
 func InitConfig() error {
@@ -24,7 +24,6 @@ func InitConfig() error {
 }
 
 func main() {
-	fmt.Println("Hello")
 	if err := InitConfig(); err != nil {
 		logrus.Fatalln(err)
 	}
@@ -54,7 +53,13 @@ func main() {
 		}
 	}()
 
-	server := ht.NewServer(viper.GetString("port"), handler.InitRoutes())
+	certManager := autocert.Manager{
+		Prompt:     autocert.AcceptTOS,
+		HostPolicy: autocert.HostWhitelist("hidddentunes.tech"),
+		Cache:      autocert.DirCache("configs/certs"),
+	}
+
+	server := ht.NewServer(viper.GetString("port"), handler.InitRoutes(), &certManager)
 
 	if err := server.Run(); err != nil {
 		logrus.Fatalln(err)

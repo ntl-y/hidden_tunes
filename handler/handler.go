@@ -18,7 +18,6 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	router := gin.New()
 
 	router.Static("/static", "./web/static")
-	// router.StaticFile("/images", "./web/images")
 	router.LoadHTMLGlob("web/templates/*")
 
 	router.GET("/", h.home)
